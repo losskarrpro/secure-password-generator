@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Mots de Passe Sécurisés</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-lock"></i> Générateur de Mots de Passe</h1>
+            <p class="subtitle">Créez des mots de passe forts et uniques en quelques clics</p>
+        </header>
+
+        <main>
+            <section class="password-display-section">
+                <div class="password-display-wrapper">
+                    <input type="text" id="passwordDisplay" readonly placeholder="Votre mot de passe apparaîtra ici...">
+                    <div class="password-actions">
+                        <button id="copyBtn" title="Copier le mot de passe">
+                            <i class="far fa-copy"></i> Copier
+                        </button>
+                        <button id="generateBtn" title="Générer un nouveau mot de passe">
+                            <i class="fas fa-redo"></i> Générer
+                        </button>
+                    </div>
+                </div>
+                <div class="strength-meter">
+                    <div class="strength-label">
+                        <span>Force du mot de passe :</span>
+                        <span id="strengthText">Faible</span>
+                    </div>
+                    <div class="meter-bar">
+                        <div id="strengthBar" class="strength-fill" data-strength="0"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="configuration-section">
+                <h2><i class="fas fa-sliders-h"></i> Configuration</h2>
+
+                <div class="config-group">
+                    <label for="lengthSlider" class="config-label">
+                        <span>Longueur : <strong id="lengthValue">16</strong> caractères</span>
+                    </label>
+                    <div class="slider-container">
+                        <input type="range" id="lengthSlider" min="8" max="32" value="16">
+                        <div class="slider-ticks">
+                            <span>8</span>
+                            <span>20</span>
+                            <span>32</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <p class="config-label">Types de caractères :</p>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="uppercaseCheckbox" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">
+                                <i class="fas fa-font"></i> Majuscules (A-Z)
+                            </span>
+                            <span class="char-example">ABCDEFGH</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="lowercaseCheckbox" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">
+                                <i class="fas fa-font"></i> Minuscules (a-z)
+                            </span>
+                            <span class="char-example">abcdefgh</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="numbersCheckbox" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">
+                                <i class="fas fa-hashtag"></i> Chiffres (0-9)
+                            </span>
+                            <span class="char-example">01234567</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="symbolsCheckbox" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">
+                                <i class="fas fa-asterisk"></i> Symboles (!@#$%...)
+                            </span>
+                            <span class="char-example">!@#$%^&*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <label class="checkbox-option advanced-option">
+                        <input type="checkbox" id="excludeSimilarCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="option-text">
+                            <i class="fas fa-eye-slash"></i> Exclure les caractères ambigus (ex: i, l, 1, O, 0)
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2><i class="fas fa-lightbulb"></i> Conseils de sécurité</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-ruler-combined"></i>
+                        <h3>Longueur</h3>
+                        <p>Utilisez au moins <strong>12 caractères</strong>. Plus c'est long, plus c'est sécurisé.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-random"></i>
+                        <h3>Complexité</h3>
+                        <p>Combinez majuscules, minuscules, chiffres et symboles pour une force maximale.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Unicité</h3>
+                        <p>N'utilisez jamais le même mot de passe sur plusieurs sites ou services.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Renouvellement</h3>
+                        <p>Changez vos mots de passe régulièrement, surtout pour les comptes sensibles.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Générateur de Mots de Passe Sécurisés &copy; <span id="currentYear"></span> - Outil open source</p>
+            <p class="footer-note">
+                <i class="fas fa-shield-alt"></i> Aucun mot de passe n'est stocké ou transmis. Tout est généré localement dans votre navigateur.
+            </p>
+        </footer>
+    </div>
+
+    <div id="copyNotification" class="notification">
+        <i class="fas fa-check-circle"></i> Mot de passe copié dans le presse-papier !
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
